@@ -1,6 +1,6 @@
 module ApplicationHelper
     def full_title(page_title)
-        base_title = "团队协作工具"
+        base_title = "im.tower"
         if page_title.empty?
             base_title
         else
