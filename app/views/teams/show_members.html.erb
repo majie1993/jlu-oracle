@@ -1,0 +1,67 @@
+<% provide(:title, @team.name) %>
+<!--
+<div class="row">
+	<aside class="span4">
+		<section>
+			<% @members.each do |mem| %>
+			<%= gravatar_for mem %>
+			<%= mem.name %>
+			
+			
+			<% if @team.creator_id == current_user[:id] %>
+			<%= link_to "delete", controller: "users", aciton: "delete_team_relationship" %>
+			<% end %>
+			
+			<% end %>
+			
+			
+			
+		</section>
+	</aside>
+</div>
+-->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>
+							头像
+						</th>
+						<th>
+							用户名
+						</th>
+						<th>
+							邮箱
+						</th>
+						<th>
+							加入时间
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @members.each do |mem| %>
+					
+					<tr>
+						<td>
+							<%= gravatar_for mem %>
+						</td>
+						<td>
+							<%= link_to mem.name, mem%>
+						</td>
+						<td>
+							<%= mem.email %>
+						</td>
+						<td>
+							<%= join_team_time_for(mem, @team) %>
+						</td>
+					</tr>
+					<% end %>
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
