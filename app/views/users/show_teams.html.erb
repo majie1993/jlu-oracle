@@ -1,0 +1,31 @@
+<% provide(:title, "Team") %>
+
+
+<div class="teams row">
+	<aside class="span3">
+		
+				
+		<section>
+			<ul class="thumbnails">
+				<% @teams.each do |team| %>
+				<li class="span2">
+					<div class="thumbnail">
+						<%= link_to image_tag("team_icon.png", alt: "team"), team %>
+						<h4><%= team.name %></h4>
+						<% if team.creator_id == current_user[:id] %>
+							<%= link_to "delete", team, method: :delete, data: { confirm: "You sure?" } %>
+						<% end %>
+					</div>
+					
+				</li>
+				<% end %>
+			</ul>
+			
+			<div class="jumbotron">
+				<button class="btn btn-large" type="button"><%= link_to "New Team", new_team_path %></button>
+			</div>
+			
+		</section>
+	</aside>
+</div>
+	

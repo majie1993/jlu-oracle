@@ -25,6 +25,7 @@ describe "Authentication" do
     end
 
 
+
     describe "with valid information" do
       let(:user) { FactoryGirl.create(:user) }
       #before do
@@ -46,6 +47,7 @@ describe "Authentication" do
         before { click_link "Sign out" }
         it { should have_link('Sign in') }
       end
+
 
     end
   end

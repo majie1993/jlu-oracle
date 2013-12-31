@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   before_action :signed_in_user, only:[:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
@@ -41,14 +42,23 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    User.find_all(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to users_url
   end
+  
+  def delete_team_relationship
+    puts "HFFFF".red
+  end
     
-  def teams
+  def show_teams
+    
+    #@team_ids = Teams_User.where(user_id: params[:id])
+    #@teams = Team.where(id: @team_ids)
     @user = User.find(params[:id])
-    flash[:success] = "你好，" + @user.name
+    @teams = @user.teams
+    
+    flash[:success] = "All Teams"
   end
 
   private
