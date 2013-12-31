@@ -5,6 +5,7 @@ SampleApp::Application.routes.draw do
   resources :teams_users
   resources :projects
   resources :sessions, only: [:new, :create, :destroy]
+
   
   root to: 'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
@@ -40,6 +41,7 @@ SampleApp::Application.routes.draw do
       get 'show_discusses'
       
       get 'show_files'
+      post 'show_files'
     end
   end
   

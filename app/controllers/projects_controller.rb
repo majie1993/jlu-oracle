@@ -1,8 +1,8 @@
 require 'carrierwave/orm/activerecord'
 
 class ProjectsController < ApplicationController
-  before_action :signed_in_user, only:[:show, :index, :edit, :update, :destroy]
-  before_action :belong_to_this_project, only: [:show, :index, :edit, :update, :destroy]
+  before_action :signed_in_user, only:[:show_files, :show, :index, :edit, :update, :destroy]
+  before_action :belong_to_this_project, only:[:show_files, :show, :index, :edit, :update, :destroy]
   
   def show
     @project = Project.find(params[:id])
@@ -10,8 +10,17 @@ class ProjectsController < ApplicationController
   
   def show_files
     @project = Project.find(params[:id])
+    @uploaders = @project.uploaders
+    
+    if params[:uploaders]
+      u = Uploader.new(project_id: params[:id], user_id: current_user[:id])
+      u.file = params[:uploaders][:file]
+      u.save!
+      flash[:success] = "成功存储 " + u.file.identifier
+    end
+    
   end
-  
+    
   def update
     redirect_to root_path
   end
