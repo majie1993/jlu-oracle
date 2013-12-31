@@ -1,9 +1,19 @@
+require 'carrierwave/orm/activerecord'
+
 class ProjectsController < ApplicationController
   before_action :signed_in_user, only:[:show, :index, :edit, :update, :destroy]
   before_action :belong_to_this_project, only: [:show, :index, :edit, :update, :destroy]
   
   def show
     @project = Project.find(params[:id])
+  end
+  
+  def show_files
+    @project = Project.find(params[:id])
+  end
+  
+  def update
+    redirect_to root_path
   end
   
   

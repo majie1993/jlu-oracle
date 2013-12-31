@@ -38,6 +38,8 @@ SampleApp::Application.routes.draw do
   resources :projects do
     member do
       get 'show_discusses'
+      
+      get 'show_files'
     end
   end
   
