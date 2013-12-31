@@ -1,7 +1,11 @@
 SampleApp::Application.routes.draw do
   
   resources :users
+  resources :teams
+  resources :teams_users
+  resources :projects
   resources :sessions, only: [:new, :create, :destroy]
+  
   root to: 'static_pages#home'
   match '/help',    to: 'static_pages#help',    via: 'get'
   match '/about',   to: 'static_pages#about',   via: 'get'
@@ -10,8 +14,7 @@ SampleApp::Application.routes.draw do
   match '/signin', to: 'sessions#new',          via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   
-  resources :teams
-  resources :teams_users
+  
   
   resources :users do
     member do
@@ -25,6 +28,16 @@ SampleApp::Application.routes.draw do
       get 'show_members'
       post 'add_members'
       get 'add_members'
+      
+      get 'show_projects'
+      get 'add_projects'
+      post 'add_projects'
+    end
+  end
+  
+  resources :projects do
+    member do
+      get 'show_discusses'
     end
   end
   

@@ -1,4 +1,4 @@
-<% provide(:title, @team.name) %>
+<% provide(:title, @project.name) %>
 
 <div class="container-fluid">
 	<div class="row-fluid">
@@ -7,26 +7,21 @@
 				<li class="span4">
 					<div class="thumbnail">
 						
-						<%= link_to image_tag("team.png", alt: "team") %>
+						<%= link_to image_tag("discuss.png", alt: "discuss") %>
 						<div class="caption">
 							<h3>
-								团队构成
+								讨论区
 							</h3>
 							<p>
-								只有项目成员才能访问该项目的信息。
+								沟通是团队和谐的基石
 							</p>
 							<p>
 								
 								<%= link_to raw("查看"), 
-								          show_members_team_path, 
+								          show_discusses_project_path, 
 								          class: "btn btn-primary",
 								          method: :get %>
 								
-								
- 								<%= link_to raw("添加"),
- 								          add_members_team_path, 
- 								          class: "btn",
- 								          method: :get %>
 													
 							</p>
 						</div>
@@ -34,13 +29,13 @@
 				</li>
 				<li class="span4">
 						<div class="thumbnail">
-							<%= link_to image_tag("project.png", alt: "project", width: 220, height: 210) %>
+							<%= link_to image_tag("file.png", alt: "file", width: 220, height: 240) %>
 							<div class="caption">
 								<h3>
-									项目列表
+									文件区
 								</h3>
 								<p>
-									在这里放着团队的所有项目
+									大家共享的云存储
 								</p>
 								<p>
 									<%= link_to raw("查看"), 
@@ -49,23 +44,19 @@
 									          method: :get %>
 								
 								
-	 								<%= link_to raw("添加"),
-	 								          add_projects_team_path, 
-	 								          class: "btn",
-	 								          method: :get %>
 								</p>
 							</div>
 						</div>
 					</li>
 					<li class="span4">
 						<div class="thumbnail">
-							<%= link_to image_tag("team_log.png", alt: "log", width: 220, height: 210) %>
+							<%= link_to image_tag("task.png", alt: "task", width: 200, height: 200) %>
 							<div class="caption">
 								<h3>
-									团队日志
+									任务列表
 								</h3>
 								<p>
-									存放创建项目、添加成员等操作的记录
+									将项目分解成独立任务，事半功倍的工作法
 								</p>
 								<p>
 									<%= link_to raw("查看"), 

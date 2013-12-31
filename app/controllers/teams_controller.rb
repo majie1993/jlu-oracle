@@ -42,7 +42,24 @@ class TeamsController < ApplicationController
         redirect_to @team
       end
     end
-    
+  end
+  
+  def show_projects
+    @team = Team.find(params[:id])
+    @projects = @team.projects
+  end
+  
+  def add_projects
+    @team = Team.find(params[:id])
+    if params[:projects]
+      @project = Project.new(team_id: params[:id], 
+                            name: params[:projects][:name], 
+                            description: params[:projects][:description])
+      if @project.save
+        flash[:success] = "Create project successfully"
+        redirect_to @project
+      end 
+    end
   end
   
   def destroy

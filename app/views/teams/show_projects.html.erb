@@ -1,0 +1,21 @@
+<% provide(:title, @team.name) %>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			
+			<% @projects.each do |project| %>
+			<p>
+				<%= link_to image_tag("project.png", alt: "project", width: 80, height: 80), project %>
+				<font size="5" face="Verdana" color=red><%= project.name %></font>
+				<font size="2" face="Verdana" color=gray><%= project.description %></font>
+				
+			</p>
+			<% end %>
+			
+			<p>
+				enene
+			</p>
+		</div>
+	</div>
+</div>
