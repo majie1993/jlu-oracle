@@ -1,4 +1,7 @@
 class TeamsController < ApplicationController
+  before_action :signed_in_user, only:[:show_members, :show, :show_members, :index, :edit, :update, :destroy]
+  #before_action :correct_user, only: [:edit, :update]
+  
   def new
     @team = Team.new
     @team_user = Teams_User.new
@@ -32,7 +35,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     if params[:users]
       @user = User.find_by_email(params[:users][:email])
-      puts @user.id.to_s.red
+      #puts @user.id.to_s.red
       @team_user = Teams_User.new(user_id: @user.id, team_id: params[:id])
       if @team_user.save
         flash[:success] = "Add successfully"
@@ -53,4 +56,16 @@ class TeamsController < ApplicationController
     def team_params
       params.require(:team).permit(:name)
     end
+    
+    def correct_user
+      @user = User.find(current_user[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
+    
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."
+      end
+    end 
 end
