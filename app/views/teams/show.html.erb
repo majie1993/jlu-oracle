@@ -68,7 +68,7 @@
 			-->
 					<li class="span4">
 						<div class="thumbnail">
-							<%= link_to image_tag("project.png", alt: "project", width: 200, height: 210) %>
+							<%= link_to image_tag("project.png", alt: "project", width: 220, height: 210) %>
 							<div class="caption">
 								<h3>
 									项目列表
@@ -77,7 +77,37 @@
 									在这里放着团队的所有项目
 								</p>
 								<p>
-									<a class="btn btn-primary" href="#">浏览</a> <a class="btn" href="#">分享</a>
+									<%= link_to raw("查看"), 
+									          show_members_team_path, 
+									          class: "btn btn-primary",
+									          method: :get %>
+								
+								
+	 								<%= link_to raw("添加"),
+	 								          add_members_team_path, 
+	 								          class: "btn",
+	 								          method: :get %>
+								</p>
+							</div>
+						</div>
+					</li>
+					<li class="span4">
+						<div class="thumbnail">
+							<%= link_to image_tag("team_log.png", alt: "log", width: 220, height: 210) %>
+							<div class="caption">
+								<h3>
+									团队日志
+								</h3>
+								<p>
+									存放创建项目、添加成员等操作的记录
+								</p>
+								<p>
+									<%= link_to raw("查看"), 
+									          show_members_team_path, 
+									          class: "btn btn-primary",
+									          method: :get %>
+								
+								
 								</p>
 							</div>
 						</div>
