@@ -5,11 +5,15 @@
 			<%= f.file_field :file %>
 			<%= f.submit "Upload", class: "btn"%>
 			<% end %>
+			<%= link_to raw("回到项目"), 
+			          @project, 
+			          class: "btn btn-primary",
+			          method: :get %>
 		</div>
 	</div>
 	<div class="row">
 		<% @uploaders.each do |up| %>
-		<div class="span4">
+		<div class="span3">
 			<div class="hero-unit">
 				<h1>
 					<% if up.file.url.split(".").last == "doc" %>

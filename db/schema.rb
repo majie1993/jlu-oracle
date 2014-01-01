@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231091803) do
+ActiveRecord::Schema.define(version: 20140101101919) do
 
   create_table "file_uploaders", force: true do |t|
     t.integer  "project_id"
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 20131231091803) do
   add_index "teams_users", ["team_id"], name: "index_teams_users_on_team_id"
   add_index "teams_users", ["user_id", "team_id"], name: "index_teams_users_on_user_id_and_team_id"
   add_index "teams_users", ["user_id"], name: "index_teams_users_on_user_id"
+
+  create_table "tests", force: true do |t|
+    t.integer  "project_id"
+    t.binary   "blober"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "uploaders", force: true do |t|
     t.integer  "project_id"
