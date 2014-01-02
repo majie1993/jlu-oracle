@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101101919) do
+ActiveRecord::Schema.define(version: 20140102024711) do
 
-  create_table "file_uploaders", force: true do |t|
-    t.integer  "project_id"
+  create_table "messages", force: true do |t|
+    t.integer  "topic_id"
     t.integer  "user_id"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file"
   end
 
   create_table "projects", force: true do |t|
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20140101101919) do
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "file"
   end
 
   create_table "teams", force: true do |t|
@@ -48,9 +47,11 @@ ActiveRecord::Schema.define(version: 20140101101919) do
   add_index "teams_users", ["user_id", "team_id"], name: "index_teams_users_on_user_id_and_team_id"
   add_index "teams_users", ["user_id"], name: "index_teams_users_on_user_id"
 
-  create_table "tests", force: true do |t|
+  create_table "topics", force: true do |t|
+    t.integer  "user_id"
     t.integer  "project_id"
-    t.binary   "blober"
+    t.string   "name"
+    t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

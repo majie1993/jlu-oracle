@@ -1,0 +1,14 @@
+<% provide(:title, 'Add new Messages') %>
+<h1>New Message</h1>
+
+<div class="row">
+	<div class="span6 offset3">
+				
+    <%= form_for("messages", controller: "topics", action: "new_messages") do |f| %>
+			<%= f.label :content %>
+			<%= f.text_area :content %>
+			
+      <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+    <% end %>
+	</div>
+</div>

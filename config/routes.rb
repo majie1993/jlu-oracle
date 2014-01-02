@@ -37,12 +37,24 @@ SampleApp::Application.routes.draw do
   end
   
   resources :projects do
+    resources 'topics' do
+      member do
+        post 'show'
+        get 'show'
+      end
+    end
     member do
-      get 'show_discusses'
+      get 'show_topics'
+      get 'new_topics'
+      post 'new_topics'
       
       get 'show_files'
       post 'show_files'
     end
+  end
+  
+  resources :topics do
+    
   end
   
   

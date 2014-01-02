@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :teams
+  has_many :topics
+  has_many :messages
   
   
   before_save { self.email = email.downcase }

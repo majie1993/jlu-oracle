@@ -1,25 +1,4 @@
 <% provide(:title, @team.name) %>
-<!--
-<div class="row">
-	<aside class="span4">
-		<section>
-			<% @members.each do |mem| %>
-			<%= gravatar_for mem %>
-			<%= mem.name %>
-			
-			
-			<% if @team.creator_id == current_user[:id] %>
-			<%= link_to "delete", controller: "users", aciton: "delete_team_relationship" %>
-			<% end %>
-			
-			<% end %>
-			
-			
-			
-		</section>
-	</aside>
-</div>
--->
 
 <div class="container-fluid">
 	<div class="row-fluid">

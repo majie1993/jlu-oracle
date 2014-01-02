@@ -1,7 +1,7 @@
 require 'carrierwave/orm/activerecord'
 
 class ProjectsController < ApplicationController
-  before_action :signed_in_user, only:[:show_files, :show, :index, :edit, :update, :destroy]
+  before_action :signed_in_user, only:[:show_topics, :show_files, :show, :index, :edit, :update, :destroy]
   before_action :belong_to_this_project, only:[:show_files, :show, :index, :edit, :update, :destroy]
   
   def show
@@ -18,7 +18,27 @@ class ProjectsController < ApplicationController
       u.save!
       flash[:success] = "成功存储 " + u.file.identifier
     end
+  end
+  
+  def show_topics
+    @project = Project.find(params[:id])
+    @topics = Topic.where(project_id: params[:id])
     
+  end
+  
+  def new_topics
+    @project = Project.find(params[:id])
+    if params[:topics]
+      @topic = Topic.new(user_id: current_user[:id],
+                          project_id: params[:id], 
+                          name: params[:topics][:name], 
+                          content: params[:topics][:content])
+      if @topic.save!
+        flash[:success] = "成功发帖"
+        redirect_to @project
+        
+      end
+    end
   end
     
   def update
