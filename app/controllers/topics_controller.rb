@@ -2,6 +2,7 @@ class TopicsController < ApplicationController
   def show
     @topic = Topic.find(params[:id])
     @ms = @topic.messages
+    @project = Project.find(params[:project_id])
         
     if params[:messages]
       @message = Message.new(user_id: current_user[:id],

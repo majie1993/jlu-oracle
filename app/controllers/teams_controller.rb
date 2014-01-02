@@ -37,7 +37,9 @@ class TeamsController < ApplicationController
       @user = User.find_by_email(params[:users][:email])
       #puts @user.id.to_s.red
       @team_user = Teams_User.new(user_id: @user.id, team_id: params[:id])
-      if @team_user.save
+      str = 
+      @log = Log.new(team_id: params[:id], content: @user.name.to_s + " 加入了团队")
+      if @team_user.save && @log.save!
         flash[:success] = "Add successfully"
         redirect_to @team
       end
@@ -55,11 +57,17 @@ class TeamsController < ApplicationController
       @project = Project.new(team_id: params[:id], 
                             name: params[:projects][:name], 
                             description: params[:projects][:description])
-      if @project.save
+      
+      @log = Log.new(team_id: params[:id], content: current_user[:name].to_s + " 创建了项目 " + params[:projects][:name])
+      if @project.save && @log.save!
         flash[:success] = "Create project successfully"
         redirect_to @project
       end 
     end
+  end
+  
+  def show_logs
+    @logs = Log.where(team_id: params[:id])
   end
   
   def destroy

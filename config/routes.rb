@@ -30,6 +30,8 @@ SampleApp::Application.routes.draw do
       post 'add_members'
       get 'add_members'
       
+      get 'show_logs'
+      
       get 'show_projects'
       get 'add_projects'
       post 'add_projects'
